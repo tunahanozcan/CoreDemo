@@ -27,15 +27,15 @@ namespace CoreDemo
         {
             services.AddControllersWithViews();
 
-            services.AddSession();
+            //services.AddSession();
 
-            services.AddMvc(config =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                            .RequireAuthenticatedUser()
-                            .Build();
-                config.Filters.Add(new AuthorizeFilter(policy));
-            });
+            //services.AddMvc(config =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder()
+            //                .RequireAuthenticatedUser()
+            //                .Build();
+            //    config.Filters.Add(new AuthorizeFilter(policy));
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,11 +56,11 @@ namespace CoreDemo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseSession();
+           // app.UseSession();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
