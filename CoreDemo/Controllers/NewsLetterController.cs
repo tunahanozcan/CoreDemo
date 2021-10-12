@@ -19,11 +19,11 @@ namespace CoreDemo.Controllers
             return PartialView();
         }
         [HttpPost]
-        public IActionResult SubscribeMail([FromForm] NewsLetter p)
+        public IActionResult SubscribeMail([FromForm]NewsLetter p)
         {
             p.MailStatus = true;
             nm.AddNewsLetter(p);
-            return RedirectToAction("Index","Blog");
+            return PartialView();
         }
     }
 }
