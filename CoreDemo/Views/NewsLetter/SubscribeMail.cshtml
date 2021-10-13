@@ -10,19 +10,20 @@
     </form>
 </div>
 <script type="text/javascript">
-    var bolum = document.createElement("div");
-    bolum.className="alert alert-success";
-    bolum.innerHTML = "Kayıt Başarılı";
-    document.body.appendChild(bolum);
+    
     $(function () {
         $("#btn").click(function (e) {
+            var bolum = document.createElement("div");
+            bolum.className = "alert alert-success";
+            bolum.innerHTML = "Kayıt Başarılı";
+            document.body.appendChild(bolum);
             e.preventDefault();
             var veri = $("#subForm").serialize();
             $.ajax({
                 type: "post",
                 url:"/NewsLetter/SubscribeMail/",
                 data: veri,
-                success: function (sonuc) {
+                success: function (f) {
                     $("#sonuc").html(bolum);
                     setTimeout(() => { window.location.reload() }, 3000);
                 }
