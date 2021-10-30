@@ -18,7 +18,7 @@ namespace BussinessLayer.Concrete
         {
             _cagoryDal = cagoryDal;
         }
-        public Category GetById(int id)
+        public Category TGetById(int id)
         {
             return _cagoryDal.GetById(id);
         }
