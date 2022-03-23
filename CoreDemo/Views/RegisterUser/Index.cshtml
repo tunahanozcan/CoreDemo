@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <span asp-validation-for="@Model.Mail" class="text-danger"></span>
-                    <input type="email" class="form-control" asp-for="@Model.Mail" placeholder="Email" required="">
+                    <input type="email" class="form-control" asp-for="@Model.Mail" placeholder="Email" >
                 </div>
                 <div class="form-group">
                     <span asp-validation-for="@Model.UserName" class="text-danger"></span>
@@ -47,19 +47,20 @@
                 </div>
                 <div class="form-group">
                     <span asp-validation-for="@Model.Password" class="text-danger"></span>
-                    <input type="password" class="form-control" asp-for="@Model.Password" placeholder="Şifre" required="">
+                    <input type="password" class="form-control" asp-for="@Model.Password" placeholder="Şifre" >
                 </div>
                 <div class="form-group">
                     <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
-                    <input type="password" class="form-control" asp-for="@Model.ConfirmPassword" placeholder="Şifre Tekrar" required="">
+                    <input type="password" class="form-control" asp-for="@Model.ConfirmPassword" placeholder="Şifre Tekrar" >
                 </div>
                 <div class="form-group">
-                    <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Kullanım şartlarını okudum, kabul ediyorum. </label></div>
+                    <span asp-validation-for="@Model.IsAcceptTheContract" class="text-danger"></span>
+                    <div class="checkbox i-checks"><label> <input type="checkbox" asp-for="@Model.IsAcceptTheContract"><i></i> Kullanım şartlarını okudum, kabul ediyorum. </label></div>
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Kayıt ol</button>
 
                 <p class="text-muted text-center"><small>Bir hesabınız var mı?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="/RegisterUser/Login/">Giriş Yap</a>
+                <a class="btn btn-sm btn-white btn-block" href="/Login/Index/">Giriş Yap</a>
 
                 <div class="text-danger" asp-validation-summary="ModelOnly">
 

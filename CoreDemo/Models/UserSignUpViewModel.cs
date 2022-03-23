@@ -27,6 +27,7 @@ namespace CoreDemo.Models
         [Display(Name = "Kullanıcı Adı")]
         [Required(ErrorMessage = "Lütfen kullanıcı adınızı giriniz")]
         public string UserName { get; set; }
+        public bool IsAcceptTheContract { get; set; }
 
     }
 }

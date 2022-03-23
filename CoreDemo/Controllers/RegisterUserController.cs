@@ -27,7 +27,7 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(UserSignUpViewModel p)
         {
-            if (ModelState.IsValid)
+           if (ModelState.IsValid&&p.IsAcceptTheContract==true)
             {
                 AppUser user = new AppUser() 
                 { 
@@ -49,7 +49,9 @@ namespace CoreDemo.Controllers
                         ModelState.AddModelError("", item.Description);
                     }
                 }
+                return View(p);
             }
+            ModelState.AddModelError("IsAcceptTheContract", "Sayfamıza kayıt olabilmek için gizlilik sözleşmesini kabul etmeniz gerekmektedir.");
             return View(p);
         }
     }

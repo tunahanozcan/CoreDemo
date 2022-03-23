@@ -35,6 +35,18 @@
                                 window.location.reload();
                             };
                         });
+                },
+                error: function (err) {
+                    swal({
+                        title: "Yorumunuz yapmak için sisteme giriş yapmalısınız.",
+                        icon: "danger",
+                        button: true
+                    })
+                        .then((okey) => {
+                            if (okey) {
+                                window.location.reload();
+                            };
+                        });
                 }
             });
         });
