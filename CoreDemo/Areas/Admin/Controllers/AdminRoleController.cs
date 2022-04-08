@@ -1,6 +1,7 @@
 ﻿using CoreDemo.Areas.Admin.Models;
 using CoreDemo.Models;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace CoreDemo.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminRoleController : Controller
     {
         private readonly RoleManager<AppRole> _roleManager;
@@ -55,9 +57,11 @@ namespace CoreDemo.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
-        public IActionResult UpdateRole(int id)
+        public async Task<IActionResult> UpdateRole(int id)
         {
             var values = _roleManager.Roles.FirstOrDefault(x => x.Id == id);
+            var users =await _userManager.GetUsersInRoleAsync(values.Name);
+            ViewBag.kullan = users;
             RoleUpdateViewModel model = new RoleUpdateViewModel
             {
                 Id = values.Id,
@@ -98,7 +102,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
             var roles = _roleManager.Roles.ToList();
 
-            TempData["Userid"] = user.Id;
+            TempData["UserId"] = user.Id;
 
             var userRoles = await _userManager.GetRolesAsync(user);
 
@@ -109,12 +113,28 @@ namespace CoreDemo.Areas.Admin.Controllers
                 m.RoleId = item.Id;
                 m.Name = item.Name;
                 m.Exists = userRoles.Contains(item.Name);
+                m.UserName = user.NameSurname;
                 model.Add(m);
-
             }
-
-
             return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(List<RoleAssignViewModel> model)
+        {
+            var userid = (int)TempData["UserId"];
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == userid);
+            foreach (var item in model)
+            {
+                if (item.Exists)
+                {
+                    await _userManager.AddToRoleAsync(user, item.Name);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, item.Name);
+                }
+            }
+            return RedirectToAction("UserRoleList");
         }
     }
 }
