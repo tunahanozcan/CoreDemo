@@ -32,5 +32,17 @@ namespace BussinessLayer.Concrete
         {
            return _commentDal.GetListAll(x => x.BlogId == id);
         }
+        public void TDelete(Comment t)
+        {
+            _commentDal.Delete(t);
+        }
+        public Comment GetCommentById(int id)
+        {
+            return _commentDal.GetById(id);
+        }
+        public void CommentEdit(Comment comment)
+        {
+            _commentDal.Update(comment);
+        }
     }
 }

@@ -7,6 +7,9 @@
 
 <!DOCTYPE html>
 <html>
+    <head>
+        <link href="~/inspinia-gh-pages/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    </head>
 <body>
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
@@ -14,28 +17,9 @@
                 <div class="ibox ">
                     <div class="ibox-title">
                         <h5>Yorumlar</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <a href="#" class="dropdown-item">Config option 1</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
                     </div>
                     <div class="ibox-content">
-                        <table class="table table-hover">
+                        <table id="dataTables-example" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -58,8 +42,8 @@
                                     <td>@item.Blog.BlogTitle</td>
                                     <td class="text-navy"> <i class="fa fa-level-up"></i> @item.BlogScore </td>
                                     <td>@(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</td>
-                                    <td><a href="#" class="btn btn-outline-danger">Sil</a></td>
-                                    <td><a href="#" class="btn btn-outline-success">Düzenle</a></td>
+                                        <td><a href="/Admin/AdminComment/CommentDelete/@item.CommentId" class="btn btn-outline-danger">Sil</a></td>
+                                        <td><a href="/Admin/AdminComment/CommentEdit/@item.CommentId" class="btn btn-outline-success">Düzenle</a></td>
                                 </tr>
                                 }
                             </tbody>
@@ -72,4 +56,39 @@
     </div>
 </body>
 </html>
+ <script src="~/inspinia-gh-pages/js/plugins/dataTables/datatables.min.js"></script>
+ <script src="~/inspinia-gh-pages/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+     <script src="~/inspinia-gh-pages/js/jquery-3.1.1.min.js"></script>
+
+ <script src="~/inspinia-gh-pages/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/inspinia-gh-pages/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+ <script>
+        $(document).ready(function(){
+            $('#dataTables-example').DataTable({
+                pageLength: 25,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
+
+                    {extend: 'print',
+                     customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
+                    }
+                ]
+
+            });
+
+        });
+
+    </script>
 

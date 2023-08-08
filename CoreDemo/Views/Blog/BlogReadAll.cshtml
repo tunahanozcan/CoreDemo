@@ -24,9 +24,8 @@
                         <div class="blog-grid-top">
                             <div class="b-grid-top">
                                 <div class="blog_info_left_grid">
-                                    <a href="single.html">
-                                        <img src="~/CoreBlogTema/images/b1.jpg" class="img-fluid" alt="">
-                                    </a>
+                                        <img src="@item.BlogImage" class="img-fluid" alt="">
+                                    
                                 </div>
                                 <div class="blog-info-middle">
                                     <ul>
@@ -54,7 +53,7 @@
                                 <a href="single.html">@item.BlogTitle </a>
                             </h3>
                             <p>
-                                @item.BlogContent
+                                @Html.Raw(@item.BlogContent)
                             </p>
                             <a href="/Blog/Index/" class="btn btn-primary read-m">Blog Listesi</a>
                         </div>
@@ -70,13 +69,13 @@
                 <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
                     <div class="right-blog-info text-left">
                         <div class="tech-btm">
-                            <img src="~/CoreBlogTema/images/banner1.jpg" class="img-fluid" alt="">
+                            <img src="~/CoreBlogTema/images/email-subs.png" class="img-fluid" alt="">
                         </div>
                         <h4>Mail bültenine abone olun</h4>
                         @await Html.PartialAsync("~/Views/NewsLetter/SubscribeMail.cshtml")
                         @await Component.InvokeAsync("CategoryList")
-                        @await Component.InvokeAsync("WriterLastBlog")
-                        <div class="single-gd my-5 tech-btm">
+                        @await Component.InvokeAsync("WriterLastBlog",new { id = ViewBag.writer })
+                        @*<div class="single-gd my-5 tech-btm">
                             <h4>Our Progress</h4>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0"
@@ -98,7 +97,7 @@
                                 <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
                                      aria-valuemax="100"></div>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="single-gd tech-btm">
                             <h4>Son Eklenen Blog</h4>
                             <div class="blog-grids">

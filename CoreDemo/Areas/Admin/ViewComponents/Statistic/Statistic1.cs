@@ -21,8 +21,8 @@ namespace CoreDemo.Areas.Admin.ViewComponents.Statistic
             ViewBag.v3 = c.Comments.Count();
             string api = "14ad2aba611dbef9c504b82a127794c5";
             string connection = "http://api.openweathermap.org/data/2.5/weather?q=istanbul&mode=xml&lang=tr&units=metric&appid="+api;
-            XDocument document = XDocument.Load(connection);
-            ViewBag.v4 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
+            //XDocument document = XDocument.Load(connection);
+            //ViewBag.v4 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
             return View();
         }
     }

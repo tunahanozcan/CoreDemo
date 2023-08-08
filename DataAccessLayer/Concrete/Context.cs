@@ -13,7 +13,8 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=TUNAHANOZCAN;database=CoreBlogDb;integrated security=true;");
+            optionsBuilder.UseSqlServer("server=77.245.159.10\\MSSQLSERVER2019;database=CoreBlogDatabase;user=adminDatabase;password=Db171453*");
+            //optionsBuilder.UseSqlServer("server=TUNAHANOZCAN;database=CoreBlogDb;integrated security=true;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,5 +43,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<Message> Messages{ get; set; }
         public DbSet<Message2> Message2s{ get; set; }
         public DbSet<Admin> Admins{ get; set; }
+        public DbSet<BannedList> BannedLists{ get; set; }
     }
 }
