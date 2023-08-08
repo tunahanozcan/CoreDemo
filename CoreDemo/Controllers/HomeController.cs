@@ -107,7 +107,7 @@ namespace CoreDemo.Controllers
         {
             var postData = new List<KeyValuePair<string, string>>()
             {
-                new KeyValuePair<string, string>("secret", "6Ld3ZXoiAAAAAF1Y2oaXWQ-9LDcTv9hE8AcEq9ux"),
+                //new KeyValuePair<string, string>("secret", "kepçeKey"),
                 //new KeyValuePair<string, string>("remoteip", HttpContext.Connection.RemoteIpAddress.ToString()),
                 new KeyValuePair<string, string>("response", HttpContext.Request.Form["g-recaptcha-response"])
             };
