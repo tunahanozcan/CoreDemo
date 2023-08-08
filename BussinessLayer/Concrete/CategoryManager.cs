@@ -38,5 +38,10 @@ namespace BussinessLayer.Concrete
         {
             _cagoryDal.Update(t);
         }
+
+        public List<Blog> GetCategoriesWithBlogCount()
+        {
+            return _cagoryDal.GetCategoriesWithBlogCount();
+        }
     }
 }

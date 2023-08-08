@@ -9,5 +9,6 @@ namespace BussinessLayer.Abstract
 {
    public interface ICategoryService:IGenericService<Category>
     {
+        List<Blog> GetCategoriesWithBlogCount();
     }
 }

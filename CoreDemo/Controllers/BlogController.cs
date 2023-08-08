@@ -30,6 +30,7 @@ namespace CoreDemo.Controllers
         {
             ViewBag.i = id;
             var values = bm.GetBlogById(id);
+            ViewBag.writer = values[0].WriterId;
             return View(values);
         }
         public IActionResult BlogListByWriter()
@@ -105,7 +106,6 @@ namespace CoreDemo.Controllers
             var username = User.Identity.Name;
             var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var writerId = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterId).FirstOrDefault();
-            blog.BlogStatus = true;
             blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             blog.WriterId = writerId;
             bm.TUpdate(blog);

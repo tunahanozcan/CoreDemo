@@ -14,7 +14,7 @@ namespace CoreDemo.ViewComponents.Category
 
         public IViewComponentResult Invoke()
         {
-            var values = cm.GetList();
+            var values = cm.GetCategoriesWithBlogCount();
             return View(values);
         }
     }
